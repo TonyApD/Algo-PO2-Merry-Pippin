@@ -21,23 +21,27 @@ public class MoneySaverApp {
         int usedDividers = 0;
         int currentGroupCost = 0;
         for (int i = 0; i < cost.length; i++) {
-            if ((currentGroupCost + cost[i]) % 10 == 4) {
-                totalCost += currentGroupCost + cost[i] - 4;
-                if (i < cost.length - 1) {
-                    usedDividers++;
-                }
-                currentGroupCost = 0;
-            } else if ((currentGroupCost + cost[i]) % 10 < 4) {
-                currentGroupCost += cost[i];
-            } else {
-                if (currentGroupCost % 10 < 5 && currentGroupCost % 10 > 0) {
-                    totalCost += currentGroupCost - (currentGroupCost % 10);
-                    usedDividers++;
-                    currentGroupCost = cost[i];
-                } else {
+            if (nrOfDividers > usedDividers) {
+                if ((currentGroupCost + cost[i]) % 10 == 4) {
+                    totalCost += currentGroupCost + cost[i] - 4;
+                    if (i < cost.length - 1) {
+                        usedDividers++;
+                    }
+                    currentGroupCost = 0;
+                } else if ((currentGroupCost + cost[i]) % 10 < 4) {
                     currentGroupCost += cost[i];
-                }
+                } else {
+                    if (currentGroupCost % 10 < 5 && currentGroupCost % 10 > 0) {
+                        totalCost += currentGroupCost - (currentGroupCost % 10);
+                        usedDividers++;
+                        currentGroupCost = cost[i];
+                    } else {
+                        currentGroupCost += cost[i];
+                    }
 
+                }
+            } else {
+                currentGroupCost += cost[i];
             }
         }
 
