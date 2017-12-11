@@ -95,7 +95,9 @@ public class LinearPartitionUtil {
             if (nrOfDividers > 0 && restInput.get(0) == 4) {
                 restInput.remove(restInput.get(0));
                 nrOfDividers--;
-            } else if (nrOfDividers > 0 && restInput.get(restInput.size() - 1) == 4) {
+            }
+
+            if (nrOfDividers > 0 && restInput.get(restInput.size() - 1) == 4) {
                 restInput.remove(restInput.get(restInput.size() - 1));
                 nrOfDividers--;
             }
@@ -107,7 +109,7 @@ public class LinearPartitionUtil {
             // STEP 4: Run partition algorith to do I(1 1 1 1 1 1 1 1) O(1 1 1 1 | 1 1 1 1)
             ArrayList<ArrayList<Integer>> actual = run(restInput, nrOfDividers);
 
-            // STEP 6 Calculate totals with tenfold values
+            // STEP 5 Calculate totals with tenfold values
             int sum = 0;
             int temp = 0;
 
@@ -115,7 +117,7 @@ public class LinearPartitionUtil {
                 sum += val;
             }
 
-            // STEP 7: Calculate totals with rest values
+            // STEP 6: Calculate totals with rest values
             for (ArrayList<Integer> list : actual) {
                 for (Integer val : list) {
                     temp += val;

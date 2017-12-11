@@ -46,6 +46,12 @@ public class LinearPartitionTest {
                 "16 16 16 15 14", 70);
     }
 
+    @Test
+    public void testExample6() {
+        executeAlgorithm("5 2\n" +
+                "4 4 4 4 4 4", 10);
+    }
+
     private void executeAlgorithm(String input, int expectedOutput) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         LinearPartitionUtil.main(null);
