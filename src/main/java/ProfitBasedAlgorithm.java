@@ -1,40 +1,33 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class ProfitBasedAlgorithm {
 
-    static String inputTool(ArrayList<Integer> input, int nrOfDividers) {
-        // STEP 1: Filter input by splitting numbers to tenfolds en putting the remainder into a separate array
-        ArrayList<Integer> preInput = new ArrayList<>();
-        ArrayList<Integer> restInput = new ArrayList<>();
-
-        for (Integer val : input) {
-            if (val >= 10) {
-                preInput.add(val - (val % 10));
-            }
-            if (val % 10 > 0) restInput.add(val % 10);
-
-        }
-
-        // STEP 5 Calculate totals with tenfold values
+    private static String inputTool(ArrayList<Integer> input, int nrOfDividers) {
         int sum = 0;
-        for (Integer val : preInput) {
-            sum += val;
-        }
-
-        int w = 0; //profit
-        int t = 0;
-        for (Integer i : restInput) {
-            t += i;
-            w = t % 10;
-            if(w == 4) {
-                sum += Util.round(t);
-                nrOfDividers --;
+        int temp = 0;
+        ArrayList<Integer> profitList = new ArrayList<>();
+        for (Integer i : input) {
+            int w;
+            temp += i;
+            w =+ temp % 10;
+            if (w >= 0 && w < 5) {
+                profitList.add(w);
             }
         }
 
-
-        return String.valueOf(sum);
+        sum += temp;
+        Collections.sort(profitList, Collections.reverseOrder());
+        for (Integer i : profitList) {
+            if (nrOfDividers != 0) {
+                sum -= i;
+                nrOfDividers--;
+            } else {
+                break;
+            }
+        }
+        return String.valueOf(Util.round(sum));
     }
 
 

@@ -58,6 +58,18 @@ public class ProfitBasedAlgorithmTest {
                 "9 4 4 7 11 3 13", 40);
     }
 
+    @Test
+    public void testExample8() {
+        executeAlgorithm("10 2\n" +
+                "1 1 1 8 1 1 6 2 2 1", 20);
+    }
+
+    @Test
+    public void testExample9() {
+        executeAlgorithm("10 2\n" +
+                "1 1 1 8 1 1 6 2 2 1", 20);
+    }
+
     private void executeAlgorithm(String input, int expectedOutput) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         ProfitBasedAlgorithm.main(null);
