@@ -1,5 +1,4 @@
 import org.junit.Before;
-import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -7,7 +6,7 @@ import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
 
-public class MoneySaveAppTest extends ExampleCases {
+public class SubstractMaximumTest extends ExampleCases {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
@@ -19,7 +18,7 @@ public class MoneySaveAppTest extends ExampleCases {
     @Override
     public void executeAlgorithm(String input, int expectedOutput) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        MoneySaverApp.main(null);
+        SubstractMaximum.main(null);
         assertEquals(String.valueOf(expectedOutput), outContent.toString());
     }
 
