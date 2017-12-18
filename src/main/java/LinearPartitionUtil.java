@@ -85,10 +85,9 @@ public class LinearPartitionUtil {
             ArrayList<Integer> restInput = new ArrayList<>();
 
             for (Integer val : input) {
-                preInput.add(val - (val % 10));
-                if (val % 10 > 0) {
-                    restInput.add(val % 10);
-                }
+                if (val  >= 10) preInput.add(val - (val % 10));
+                if (val % 10 > 0) restInput.add(val % 10);
+
             }
 
             // STEP 2 remove dividers for EDGE CASE (4 on 0||size-1 index of array)

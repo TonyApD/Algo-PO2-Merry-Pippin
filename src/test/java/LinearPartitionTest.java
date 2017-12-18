@@ -48,8 +48,14 @@ public class LinearPartitionTest {
 
     @Test
     public void testExample6() {
-        executeAlgorithm("5 2\n" +
-                "4 4 4 4 4 4", 10);
+        executeAlgorithm("6 2\n" +
+                "4 4 4 4 4 4", 20);
+    }
+
+    @Test
+    public void testExample7() {
+        executeAlgorithm("7 2\n" +
+                "9 4 4 7 11 3 13", 40);
     }
 
     private void executeAlgorithm(String input, int expectedOutput) {

@@ -46,6 +46,12 @@ public class MoneySaveAppTest {
 
     }
 
+    @Test
+    public void testExample7() {
+        executeAlgorithm("7 2\n" +
+                "9 4 4 7 11 3 13", 40);
+    }
+
     private void executeAlgorithm(String input, int expectedOutput) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
