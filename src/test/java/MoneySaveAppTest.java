@@ -9,12 +9,12 @@ import static org.junit.Assert.assertEquals;
 
 public class MoneySaveAppTest {
 
-    private SubstractMaximum app;
+    //private SubstractMaximum app;
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     @Before
     public void setUp() {
-        app = new SubstractMaximum();
+        //app = new SubstractMaximum();
         System.setOut(new PrintStream(outContent));
     }
 
@@ -67,7 +67,7 @@ public class MoneySaveAppTest {
     private void executeAlgorithm(String input, int expectedOutput) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
-        SubstractMaximum.main(null);
+        //SubstractMaximum.main(null);
 
         assertEquals(String.valueOf(expectedOutput), outContent.toString());
     }

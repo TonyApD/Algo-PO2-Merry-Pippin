@@ -70,6 +70,24 @@ public class ProfitBasedAlgorithmTest {
                 "1 1 1 8 1 1 6 2 2 1", 20);
     }
 
+    @Test
+    public void testExample10() {
+        executeAlgorithm("60 2\n" +
+                "5 3 6 8 9 5 4 3 2 5 5 3 6 8 9 5 4 3 2 5 5 3 6 8 9 5 4 3 2 5 5 3 6 8 9 5 4 3 2 5 5 3 6 8 9 5 4 3 2 5 5 3 6 8 9 5 4 3 2 5", 290);
+    }
+
+    @Test
+    public void testExample11() {
+        executeAlgorithm("5 3\n" +
+                "6 5 4 6 5", 20);
+    }
+
+    @Test
+    public void testExample12() {
+        executeAlgorithm("4 1\n" +
+                "7 7 7 7", 20);
+    }
+
     private void executeAlgorithm(String input, int expectedOutput) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         ProfitBasedAlgorithm.main(null);

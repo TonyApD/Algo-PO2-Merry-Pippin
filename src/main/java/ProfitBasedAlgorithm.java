@@ -7,22 +7,27 @@ public class ProfitBasedAlgorithm {
     private static String inputTool(ArrayList<Integer> input, int nrOfDividers) {
         int sum = 0;
         int temp = 0;
+        int maxPossibleProfit = (4 + (nrOfDividers * 4));
         ArrayList<Integer> profitList = new ArrayList<>();
         for (Integer i : input) {
             int w;
             temp += i;
-            w =+ temp % 10;
+            w = +temp % 10;
             if (w >= 0 && w < 5) {
                 profitList.add(w);
             }
         }
 
+        int totalSubtracted = 0;
         sum += temp;
         Collections.sort(profitList, Collections.reverseOrder());
         for (Integer i : profitList) {
             if (nrOfDividers != 0) {
-                sum -= i;
-                nrOfDividers--;
+                if(totalSubtracted != maxPossibleProfit) {
+                    sum -= i;
+                    totalSubtracted += i;
+                    nrOfDividers--;
+                }
             } else {
                 break;
             }
