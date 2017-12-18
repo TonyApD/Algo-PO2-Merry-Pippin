@@ -13,7 +13,7 @@ public class ProfitBasedAlgorithm {
             int w;
             temp += i;
             w = +temp % 10;
-            if (w >= 0 && w < 5) {
+            if (w > 0 && w < 5) {
                 profitList.add(w);
             }
         }

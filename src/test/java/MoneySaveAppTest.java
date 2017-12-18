@@ -64,6 +64,9 @@ public class MoneySaveAppTest {
                 "6 5 4 6 5", 20);
     }
 
+
+
+
     private void executeAlgorithm(String input, int expectedOutput) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
