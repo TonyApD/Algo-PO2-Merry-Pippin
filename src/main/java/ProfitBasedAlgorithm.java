@@ -21,9 +21,7 @@ public class ProfitBasedAlgorithm {
             }
         }
 
-        for (Integer i : input) {
-            sum += i;
-        }
+        sum = input.stream().mapToInt(i -> i).sum();
 
         int totalSubtracted = 0;
         profitList.sort(Collections.reverseOrder());
