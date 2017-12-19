@@ -29,7 +29,13 @@ public class MoneySaverApp {
                     }
                     currentGroupCost = 0;
                 } else if ((currentGroupCost + cost[i]) % 10 < 4) {
-                    currentGroupCost += cost[i];
+                    if ((currentGroupCost + cost[i]) % 10 > currentGroupCost % 10) {
+                        currentGroupCost += cost[i];
+                    } else {
+                        totalCost += currentGroupCost - (currentGroupCost % 10);
+                        usedDividers++;
+                        currentGroupCost = cost[i];
+                    }
                 } else {
                     if (currentGroupCost % 10 < 5 && currentGroupCost % 10 > 0) {
                         totalCost += currentGroupCost - (currentGroupCost % 10);

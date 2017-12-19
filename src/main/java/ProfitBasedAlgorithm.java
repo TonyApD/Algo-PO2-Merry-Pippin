@@ -10,6 +10,7 @@ public class ProfitBasedAlgorithm {
         int maxPossibleProfit = (4 + (nrOfDividers * 4));
         ArrayList<Integer> profitListBySum = new ArrayList<>();
         ArrayList<Integer> profitListByNum = new ArrayList<>();
+        ArrayList<Integer> profitListByUnknown = new ArrayList<>();
 
 
         // By sum calculations
@@ -31,13 +32,34 @@ public class ProfitBasedAlgorithm {
             }
         }
 
+        temp = 0;
+        int w = 0;
+        // By unknown algorithm
+        for (int i = 0; i < input.size(); i++) {
+
+            //temp += input.get(i);
+            w = w + (input.get(i) % 10);
+            if (!profitListByUnknown.isEmpty() &&
+                    w + profitListByUnknown.get(profitListByUnknown.size() - 1)  <= 4) {
+                profitListByUnknown.set(profitListByUnknown.size() - 1, w + profitListByUnknown.get(profitListByUnknown.size() - 1));
+                w = 0;
+            } else if (w % 10 > 0 && w % 10 < 5) {
+                profitListByUnknown.add(0); // balkje
+                profitListByUnknown.add(w % 10);
+                w = 0;
+            }
+        }
+
+        for (Integer i : input) {
+            temp += i;
+        }
         // Choose which profitlist we will use
         ArrayList<Integer> optimumList;
-        if (profitListByNum.stream().mapToInt(Integer::intValue).sum() <
+        if (profitListByUnknown.stream().mapToInt(Integer::intValue).sum() <
                 profitListBySum.stream().mapToInt(Integer::intValue).sum()) {
             optimumList = profitListBySum;
         } else {
-            optimumList = profitListByNum;
+            optimumList = profitListByUnknown;
         }
 
 

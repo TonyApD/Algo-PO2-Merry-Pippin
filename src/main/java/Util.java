@@ -6,4 +6,12 @@ public abstract class Util {
         }
         return input + 10 - (input % 10);
     }
+
+    public static int getProfit(int input){
+        if (input % 10 <= 4) {
+            return input % 10;
+        }
+        return 0;
+    }
+
 }
