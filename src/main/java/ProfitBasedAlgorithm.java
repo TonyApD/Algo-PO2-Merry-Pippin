@@ -8,22 +8,45 @@ public class ProfitBasedAlgorithm {
         int sum = 0;
         int temp = 0;
         int maxPossibleProfit = (4 + (nrOfDividers * 4));
-        ArrayList<Integer> profitList = new ArrayList<>();
+        ArrayList<Integer> profitListBySum = new ArrayList<>();
+        ArrayList<Integer> profitListByNum = new ArrayList<>();
+
+
+        // By sum calculations
         for (Integer i : input) {
             int w;
             temp += i;
             w = +temp % 10;
             if (w > 0 && w < 5) {
-                profitList.add(w);
+                profitListBySum.add(w);
             }
         }
 
+        // By num calculations
+        for (Integer i : input) {
+            int n;
+            n = +i % 10;
+            if (n > 0 && n < 5) {
+                profitListByNum.add(n);
+            }
+        }
+
+        // Choose which profitlist we will use
+        ArrayList<Integer> optimumList;
+        if (profitListByNum.stream().mapToInt(Integer::intValue).sum() <
+                profitListBySum.stream().mapToInt(Integer::intValue).sum()) {
+            optimumList = profitListBySum;
+        } else {
+            optimumList = profitListByNum;
+        }
+
+
         int totalSubtracted = 0;
         sum += temp;
-        Collections.sort(profitList, Collections.reverseOrder());
-        for (Integer i : profitList) {
+        Collections.sort(optimumList, Collections.reverseOrder());
+        for (Integer i : optimumList) {
             if (nrOfDividers != 0) {
-                if(totalSubtracted != maxPossibleProfit) {
+                if (totalSubtracted != maxPossibleProfit) {
                     sum -= i;
                     totalSubtracted += i;
                     nrOfDividers--;
