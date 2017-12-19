@@ -5,37 +5,29 @@ import java.util.Scanner;
 public class ProfitBasedAlgorithm {
 
     private static String inputTool(ArrayList<Integer> input, int nrOfDividers) {
-        int sum = 0;
-        int temp = 0;
-        int maxPossibleProfit = (4 + (nrOfDividers * 4));
-
-        ArrayList<Integer> profitListByUnknown = new ArrayList<>();
-
         int w = 0;
-        // By unknown algorithm
-        for (Integer i : input) {
+        int sum = 0;
+        int maxPossibleProfit = (4 + (nrOfDividers * 4));
+        ArrayList<Integer> profitList = new ArrayList<>();
 
-            //temp += input.get(i);
+        for (Integer i : input) {
             w = w + (i % 10);
-            if (!profitListByUnknown.isEmpty() &&
-                    w + profitListByUnknown.get(profitListByUnknown.size() - 1) <= 4) {
-                profitListByUnknown.set(profitListByUnknown.size() - 1, w + profitListByUnknown.get(profitListByUnknown.size() - 1));
+            if (!profitList.isEmpty() && w + profitList.get(profitList.size() - 1) <= 4) {
+                profitList.set(profitList.size() - 1, w + profitList.get(profitList.size() - 1));
                 w = 0;
             } else if (w % 10 > 0 && w % 10 < 5) {
-                profitListByUnknown.add(0); // balkje
-                profitListByUnknown.add(w % 10);
+                profitList.add(w % 10);
                 w = 0;
             }
         }
 
         for (Integer i : input) {
-            temp += i;
+            sum += i;
         }
 
         int totalSubtracted = 0;
-        sum += temp;
-        profitListByUnknown.sort(Collections.reverseOrder());
-        for (Integer i : profitListByUnknown) {
+        profitList.sort(Collections.reverseOrder());
+        for (Integer i : profitList) {
             if (nrOfDividers != 0) {
                 if (totalSubtracted != maxPossibleProfit) {
                     sum -= i;
@@ -49,15 +41,11 @@ public class ProfitBasedAlgorithm {
         return String.valueOf(Util.round(sum));
     }
 
-
     public static void main(String[] args) {
-        int nrOfProducts;
-        int nrOfDividers;
-
         Scanner scan = new Scanner(System.in);
 
-        nrOfProducts = scan.nextInt();
-        nrOfDividers = scan.nextInt();
+        int nrOfProducts = scan.nextInt();
+        int nrOfDividers = scan.nextInt();
 
         ArrayList<Integer> cost = new ArrayList<>();
 

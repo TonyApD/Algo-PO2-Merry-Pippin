@@ -14,4 +14,8 @@ public abstract class Util {
         return 0;
     }
 
+    public static boolean givesProfit(int input) {
+        return input % 10 <= 4;
+    }
+
 }
