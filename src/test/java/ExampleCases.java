@@ -1,6 +1,17 @@
+import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 public class ExampleCases {
+
+    protected final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+
+    @Before
+    public void setUp() {
+        System.setOut(new PrintStream(outContent));
+    }
 
     @Test
     public void testExample1() {
@@ -114,7 +125,7 @@ public class ExampleCases {
     @Test
     public void testExample19() {
         executeAlgorithm("13 2\n" +
-                "56 7 26 78 27 4 2 90 7 5 56 32 1 ",380);
+                "56 7 26 78 27 4 2 90 7 5 56 32 1 ", 380);
     }
 
     @Test
@@ -138,7 +149,7 @@ public class ExampleCases {
     @Test
     public void testExample23() {
         executeAlgorithm("18 2\n" +
-                "56 7 26 4 1 3 10 8 78 27 4 2 90 7 5 56 32 1 ",410);
+                "56 7 26 4 1 3 10 8 78 27 4 2 90 7 5 56 32 1 ", 410);
     }
 
     @Test
@@ -150,7 +161,7 @@ public class ExampleCases {
     @Test
     public void testExample25() {
         executeAlgorithm("18 4\n" +
-                "56 7 26 4 1 3 10 8 78 27 4 2 90 7 5 56 32 1 ",400);
+                "56 7 26 4 1 3 10 8 78 27 4 2 90 7 5 56 32 1 ", 400);
     }
 
     @Test
