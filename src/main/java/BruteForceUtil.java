@@ -11,13 +11,12 @@ public class BruteForceUtil {
 
         if (nrOfDividers >= 1) {
             for (int i = 0; i < input.size() - 1; i++) {
-                for (int j = i + 1; j < input.size(); j++) {
-                    sum = Util.round(input.subList(0, i + 1).stream().mapToInt(q -> q).sum());
-                    sum += Util.round(input.subList(i + 1, j).stream().mapToInt(q -> q).sum());
-                    sum += Integer.valueOf(inputTool(input.subList(j, input.size()), nrOfDividers - 1));
-                    if (sum < best) {
-                        best = sum;
-                    }
+                //Add the group before the divider to the sum
+                sum = Util.round(input.subList(0, i + 1).stream().mapToInt(q -> q).sum());
+                //Add the group after the divider to the sum
+                sum += Integer.valueOf(inputTool(input.subList(i + 1, input.size()), nrOfDividers - 1));
+                if (sum < best) {
+                    best = sum;
                 }
             }
         } else {
