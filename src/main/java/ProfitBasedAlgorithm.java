@@ -10,8 +10,9 @@ public class ProfitBasedAlgorithm {
         ArrayList<Integer> profitList = new ArrayList<>();
 
         for (Integer i : input) {
+            sum += i;
             w = w + (i % 10);
-            if (!profitList.isEmpty() && (w %10) + profitList.get(profitList.size() - 1)  <= 4) {
+            if (!profitList.isEmpty() && (w % 10) + profitList.get(profitList.size() - 1) <= 4) {
                 profitList.set(profitList.size() - 1, (w % 10) + profitList.get(profitList.size() - 1));
                 w = 0;
             } else if (w % 10 > 0 && w % 10 < 5) {
@@ -19,8 +20,6 @@ public class ProfitBasedAlgorithm {
                 w = 0;
             }
         }
-
-        sum = input.stream().mapToInt(i -> i).sum();
 
         profitList.sort(Collections.reverseOrder());
         for (Integer i : profitList) {

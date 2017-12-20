@@ -5,29 +5,31 @@ import java.util.Scanner;
 
 public class BruteForceUtil {
 
-    private static String inputTool(List<Integer> input, int nrOfDividers) {
+    private static int inputTool(List<Integer> input, int nrOfDividers) {
         int best = (int) Double.MAX_VALUE;
         int sum = 0;
 
-        if (nrOfDividers >= 1) {
-            for (int i = 0; i < input.size() - 1; i++) {
-                //Add the group before the divider to the sum
-                sum = Util.round(input.subList(0, i + 1).stream().mapToInt(q -> q).sum());
-                //Add the group after the divider to the sum
-                sum += Integer.valueOf(inputTool(input.subList(i + 1, input.size()), nrOfDividers - 1));
-                if (sum < best) {
-                    best = sum;
+        for (int j = 0; j <= nrOfDividers ; j++) {
+            if (input.size() > 1) {
+                for (int i = 0; i < input.size(); i++) {
+                    //Add the group before the divider to the sum
+                    sum = input.subList(0, i + 1).stream().mapToInt(q -> q).sum();
+                    //Add the group after the divider to the sum
+                    sum += inputTool(input.subList(i + 1, input.size()), j);
+                    if (sum < best) {
+                        best = sum;
+                    }
                 }
+            } else {
+                sum += input.stream().mapToInt(q -> q).sum();
             }
-        } else {
-            sum += Util.round(input.stream().mapToInt(q -> q).sum());
-        }
-        if (sum < best) {
-            best = sum;
+            if (sum < best) {
+                best = sum;
+            }
         }
 
 
-        return String.valueOf(Util.round(best));
+        return Util.round(best);
     }
 
     public static void main(String[] args) {
