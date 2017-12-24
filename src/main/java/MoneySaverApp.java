@@ -72,7 +72,7 @@ public class MoneySaverApp {
      */
     private static void removeDivider(List<Integer> groups) {
         //First check whether two groups may be merged that the total sum of the groups remains equal
-        for (int i = 0; i < groups.size() - 1; i++) {
+        for (int i = 0; i < groups.size() - 1; i++) { //TODO: Traversing from end to begin let's c5 fail suddenly. Check this
             if (Util.round(groups.get(i) + groups.get(i + 1)) == Util.round(groups.get(i)) + Util.round(groups.get(i + 1))) {
                 groups.set(i, groups.get(i) + groups.get(i + 1));
                 groups.remove(i + 1);
@@ -82,14 +82,14 @@ public class MoneySaverApp {
 
         //Otherwise check which divider may be removed with the least impact
         int removeDividerAfter = 0;
-        int currentLeastProfitLoss = -1;
-        for (int i = 0; i < groups.size() - 1; i++) {
-            if (Util.getProfit((groups.get(i) + groups.get(i + 1))) > currentLeastProfitLoss) {
+        int currentLeastProfitLoss = (int) Double.MAX_VALUE;
+        for (int i = groups.size() - 2; i >= 0; i--) {
+            if ((groups.get(i) % 10 + groups.get(i + 1) % 10) < currentLeastProfitLoss) {
                 removeDividerAfter = i;
                 currentLeastProfitLoss = Util.getProfit(groups.get(i)) + Util.getProfit(groups.get(i + 1));
             }
         }
-        if (removeDividerAfter < groups.size() - 1) {
+        if (removeDividerAfter <= groups.size() - 1) {
             groups.set(removeDividerAfter, groups.get(removeDividerAfter) + groups.get(removeDividerAfter + 1));
             groups.remove(removeDividerAfter + 1);
         }
