@@ -18,7 +18,7 @@ public class ExampleCases {
 
     public void executeAlgorithm(String input, int expectedOutput) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        BruteForceUtil.main(null);
+        MoneySaverApp.main(null);
         assertEquals(String.valueOf(expectedOutput), outContent.toString());
     }
 

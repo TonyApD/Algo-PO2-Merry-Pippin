@@ -27,7 +27,7 @@ public class MoneySaverApp {
     }
 
     /**
-     * Searches for groups of consecutive products that generate profit
+     * Searches for groups of consecutive products that have a non-decreasing sum of profit
      *
      * @param prizes the array of prizes all products
      * @return the list with profitable groups
@@ -65,8 +65,8 @@ public class MoneySaverApp {
     }
 
     /**
-     * Removes a divider when too much dividers are placed. First check whether two groups may be merged with same result.
-     * Otherwise removes the divider on the position where it has the least negative effect on the total sum of the groups
+     * Removes a divider when too much dividers are placed. First check whether two groups may be merged with same result after rounding.
+     * Otherwise removes the divider on the position where it has the least negative effect on the total sum
      *
      * @param groups the found profitable groups of consecutive products
      */
@@ -76,17 +76,17 @@ public class MoneySaverApp {
             if (Util.round(groups.get(i) + groups.get(i + 1)) == Util.round(groups.get(i)) + Util.round(groups.get(i + 1))) {
                 groups.set(i, groups.get(i) + groups.get(i + 1));
                 groups.remove(i + 1);
-                return;
+                return; //TODO: Check why return lets some cases not fail
             }
         }
 
-        //Otherwise check which divider may be removed with the least impact
+        //Otherwise check which divider may be removed with the least impact on the total sum
         int removeDividerAfter = 0;
         int currentLeastProfitLoss = (int) Double.MAX_VALUE;
         for (int i = groups.size() - 2; i >= 0; i--) {
             if ((groups.get(i) % 10 + groups.get(i + 1) % 10) < currentLeastProfitLoss) {
                 removeDividerAfter = i;
-                currentLeastProfitLoss = Util.getProfit(groups.get(i)) + Util.getProfit(groups.get(i + 1));
+                currentLeastProfitLoss = groups.get(i) % 10 + groups.get(i + 1) % 10;
             }
         }
         if (removeDividerAfter <= groups.size() - 1) {

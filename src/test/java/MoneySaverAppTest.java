@@ -2,7 +2,7 @@ import java.io.ByteArrayInputStream;
 
 import static org.junit.Assert.assertEquals;
 
-public class MoneySaveAppTest extends ExampleCases {
+public class MoneySaverAppTest extends ExampleCases {
 
     @Override
     public void executeAlgorithm(String input, int expectedOutput) {
