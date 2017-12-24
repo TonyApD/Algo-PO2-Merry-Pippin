@@ -71,6 +71,16 @@ public class MoneySaverApp {
      * @param groups the found profitable groups of consecutive products
      */
     private static void removeDivider(List<Integer> groups) {
+        //First check whether two groups may be merged that the profit will be even better
+        for (int i = 0; i < groups.size() - 1; i++) {
+            if (Util.round(groups.get(i) + groups.get(i + 1)) == Util.round(groups.get(i)) + Util.round(groups.get(i + 1))) {
+                groups.set(i, groups.get(i) + groups.get(i + 1));
+                groups.remove(i + 1);
+                return;
+            }
+        }
+
+        //Otherwise check which divider may be removed with the least impact
         int removeDividerAfter = 0;
         int currentLeastProfitLoss = -1;
         for (int i = 0; i < groups.size() - 1; i++) {
