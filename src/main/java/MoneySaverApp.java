@@ -40,7 +40,7 @@ public class MoneySaverApp {
                 groups.add(currentGroupCost + prizes[i]);
                 currentGroupCost = 0;
             } else if ((currentGroupCost + prizes[i]) % 10 < 4) {
-                if (Util.getProfit(currentGroupCost + prizes[i]) > Util.getProfit(currentGroupCost)) {
+                if (Util.getProfit(currentGroupCost + prizes[i]) >= Util.getProfit(currentGroupCost)) {
                     currentGroupCost += prizes[i];
                 } else {
                     groups.add(currentGroupCost);
@@ -65,13 +65,13 @@ public class MoneySaverApp {
     }
 
     /**
-     * Removes a divider when too much dividers are placed. Removes the divider on the position where it has the least
-     * negative effect on the total sum of the groups
+     * Removes a divider when too much dividers are placed. First check whether two groups may be merged with same result.
+     * Otherwise removes the divider on the position where it has the least negative effect on the total sum of the groups
      *
      * @param groups the found profitable groups of consecutive products
      */
     private static void removeDivider(List<Integer> groups) {
-        //First check whether two groups may be merged that the profit will be even better
+        //First check whether two groups may be merged that the total sum of the groups remains equal
         for (int i = 0; i < groups.size() - 1; i++) {
             if (Util.round(groups.get(i) + groups.get(i + 1)) == Util.round(groups.get(i)) + Util.round(groups.get(i + 1))) {
                 groups.set(i, groups.get(i) + groups.get(i + 1));
