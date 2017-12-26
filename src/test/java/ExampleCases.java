@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ExampleCases {
 
-    protected final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     @Before
     public void setUp() {
@@ -18,7 +18,7 @@ public class ExampleCases {
 
     public void executeAlgorithm(String input, int expectedOutput) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        MoneySaverApp.main(null);
+        BruteForceUtil.main(null);
         assertEquals(String.valueOf(expectedOutput), outContent.toString());
     }
 
