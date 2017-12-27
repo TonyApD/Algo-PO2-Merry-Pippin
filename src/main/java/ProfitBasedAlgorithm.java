@@ -1,24 +1,20 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 
 public class ProfitBasedAlgorithm {
 
     private static int sum;
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-
-        scan.nextInt();
-        int nrOfDividers = scan.nextInt();
-
+        Reader s = new Reader();
         ArrayList<Integer> input = new ArrayList<>();
-
-        while (scan.hasNext()) {
-            input.add(scan.nextInt());
+        int p = s.nextInt();
+        int n = s.nextInt();
+        for (int i = 0; i < p; i++) {
+            input.add(s.nextInt());
         }
-
-        System.out.print(Util.round(optimizeDividers(optimizePrices(input), nrOfDividers)));
+        s.close();
+        System.out.print(Util.round(optimizeDividers(optimizePrices(input), n)));
     }
 
     /**
