@@ -1,5 +1,10 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.io.DataInputStream;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class ProfitBasedAlgorithm {
 
@@ -10,6 +15,7 @@ public class ProfitBasedAlgorithm {
         ArrayList<Integer> input = new ArrayList<>();
         int p = s.nextInt();
         int n = s.nextInt();
+
         for (int i = 0; i < p; i++) {
             input.add(s.nextInt());
         }
@@ -39,8 +45,22 @@ public class ProfitBasedAlgorithm {
                 p = 0;
             }
         }
-        return profitList;
+
+        ArrayList<Integer> optimizorProfitList = new ArrayList<>();
+        for (int i = 0; i < profitList.size(); i++) {
+            if (i < profitList.size() - 1) {
+                if (i != 0 && profitList.get(i) == 4 && profitList.get(i + 1) == 4) {
+                    optimizorProfitList.add(0, profitList.get(i));
+                } else {
+                    optimizorProfitList.add(profitList.get(i));
+                }
+            } else {
+                optimizorProfitList.add(profitList.get(i));
+            }
+        }
+        return optimizorProfitList;
     }
+
 
     /**
      * Given that the profitlist is build up, we now look at placing dividers.
@@ -51,7 +71,6 @@ public class ProfitBasedAlgorithm {
      * @return the return value consists of the optimized price that will get payed after 'placing' the dividers
      */
     private static int optimizeDividers(ArrayList<Integer> priceOptimizedList, int nrOfDividers) {
-        priceOptimizedList.sort(Collections.reverseOrder());
         for (Integer i : priceOptimizedList) {
             if (nrOfDividers != 0) {
                 sum -= i;
