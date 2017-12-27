@@ -23,7 +23,7 @@ public class MoneySaverApp {
             removeDivider(groups);
         }
 
-        System.out.print(groups.stream().mapToInt(Util::round).sum());
+        System.out.print(groups.stream().mapToInt(Util::r).sum());
     }
 
     /**
@@ -40,7 +40,7 @@ public class MoneySaverApp {
                 groups.add(currentGroupCost + prizes[i]);
                 currentGroupCost = 0;
             } else if ((currentGroupCost + prizes[i]) % 10 < 4) {
-                if (Util.getProfit(currentGroupCost + prizes[i]) >= Util.getProfit(currentGroupCost)) {
+                if (Util.getP(currentGroupCost + prizes[i]) >= Util.getP(currentGroupCost)) {
                     currentGroupCost += prizes[i];
                 } else {
                     groups.add(currentGroupCost);
@@ -73,7 +73,7 @@ public class MoneySaverApp {
     private static void removeDivider(List<Integer> groups) {
         //First check whether two groups may be merged that the total sum of the groups remains equal
         for (int i = 0; i < groups.size() - 1; i++) { //TODO: Traversing from end to begin let's c5 fail suddenly. Check this
-            if (Util.round(groups.get(i) + groups.get(i + 1)) == Util.round(groups.get(i)) + Util.round(groups.get(i + 1))) {
+            if (Util.r(groups.get(i) + groups.get(i + 1)) == Util.r(groups.get(i)) + Util.r(groups.get(i + 1))) {
                 groups.set(i, groups.get(i) + groups.get(i + 1));
                 groups.remove(i + 1);
                 return; //TODO: Check why return lets some cases not fail
