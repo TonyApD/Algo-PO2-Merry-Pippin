@@ -15,24 +15,24 @@ public abstract class Util {
     }
 
     /**
-     * Returns the profit, if there is any
-     * @param input
-     * @return
+     * If the remainder of the profit divided by ten is <= 4
+     * @param input the input to calculate profit on.
+     * @return profit modulo 10 if there is profit, returns zero otherwise
      */
     public static int getP(int input) {
-        if (input % 10 <= 4) {          // If the remainder of the profit divided by ten is <= 4
-            return input % 10;          // Return the profit modulo 10
+        if (input % 10 <= 4) {
+            return input % 10;
         }
-        return 0;                       // Return zero otherwise
+        return 0;
     }
 
     /**
      * Boolean to check if there is profit or not
-     * @param input
-     * @return
+     * @param input the value to compute the boolean on
+     * @return true if there is profit
      */
     public static boolean pFor(int input) {
-        return input % 10 <= 4;         // Returns true IF there is any profit
+        return input % 10 <= 4;
     }
 
     /**

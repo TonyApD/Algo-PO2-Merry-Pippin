@@ -11,16 +11,17 @@ public class ProfitBasedAlgorithm {
         ArrayList<Integer> input = new ArrayList<>();                // Fresh ArrayList to capture the products
 
         for (int i = 0; i < p; i++) {
-            input.add(s.nextInt());                                  // Add the products to the ArrayList for use later
+            input.add(s.nextInt());                                  // Add the price of every product to the ArrayList
         }
         s.close();                                                   // Close the reader when done
-        System.out.print(Util.round(optimizeDividers(calculateProfit(calculatePotentialProfit(input)), nDiv))); // Execute the optimizeDividers function and return the result
+        System.out.print(Util.round(optimizeDividers(calculateProfit(calculatePotentialProfit(input)), nDiv))); // execute and print result
     }
 
     /**
      * Takes the main input with products and optimizes it into a possible profits which get stored into
      * the potentialProfitList. This list has values like [4,4,2,2,3,4,3,2,1,2,1,4,2,1,2,4,3] and
      * is therefore not optimised yet
+     *
      * @param input main input for current list of products
      * @return potentialProfitList
      */
@@ -31,9 +32,8 @@ public class ProfitBasedAlgorithm {
         for (Integer i : input) {                                    // Start walking through the input
             sum += i;                                                // Add the input to the sum
             potP = potP + Util.rem(i);                               // For every value we check what the remainder would be
-            if (!potentialProfitList.isEmpty() && Util.rem(potP) +
-                    potentialProfitList.get(potentialProfitList.size() - 1) <= 4) {
-                potentialProfitList.set(potentialProfitList.size() - 1, Util.rem(potP) +
+            if (!potentialProfitList.isEmpty() && Util.rem(potP) + potentialProfitList.get(potentialProfitList.size() - 1) <= 4) {
+                potentialProfitList.set(potentialProfitList.size() - 1, Util.rem(potP) + // Look if we can make a four combined of the next following numbers
                         potentialProfitList.get(potentialProfitList.size() - 1)); // add the remainder to the list, see documentation for further explaining on this
                 potP = 0;                                            // If we did add potential Profit to the list, reset it for the next iteration.
             } else if (Util.pFor(potP)) {                            // Otherwise, if there is a profit
@@ -47,6 +47,7 @@ public class ProfitBasedAlgorithm {
     /**
      * Takes the potentialProfitList and transforms that before placing dividers
      * The list will now look more like [4,4,4,4,2,2,3,3,2,1,2,1,4,2,1,2,3] and
+     *
      * @param profitL main input for current list of products
      * @return potentialProfitList
      */
@@ -70,8 +71,9 @@ public class ProfitBasedAlgorithm {
     /**
      * Now are finally at the removing step. At this point we subtract profit (IE place dividers) as long as we have
      * them. When we are out of dividers, we stop the loop and return.
+     *
      * @param optimizedProfitList this is the optimized list that we will use to subtract from the sum
-     * @param nrOfDividers number of dividers we have at our disposal
+     * @param nrOfDividers        number of dividers we have at our disposal
      * @return returns the resulting sum so the main can print it.
      */
     private static int optimizeDividers(ArrayList<Integer> optimizedProfitList, int nrOfDividers) {
@@ -85,5 +87,4 @@ public class ProfitBasedAlgorithm {
         }
         return sum;                                                  // Return the value after done.
     }
-
 }
