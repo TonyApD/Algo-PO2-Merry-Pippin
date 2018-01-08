@@ -21,7 +21,7 @@ public class MoneySaverApp {
             removeDivider(groups);
         }
 
-        System.out.print(groups.stream().mapToInt(Util::r).sum());
+        System.out.print(groups.stream().mapToInt(Util::round).sum());
     }
 
     /**
@@ -71,7 +71,7 @@ public class MoneySaverApp {
     private static void removeDivider(List<Integer> groups) {
         //First check whether two groups may be merged that the total sum of the groups remains equal
         for (int i = groups.size() - 2; i >= 0; i--) {
-            if (Util.r(groups.get(i) + groups.get(i + 1)) == Util.r(groups.get(i)) + Util.r(groups.get(i + 1))) {
+            if (Util.round(groups.get(i) + groups.get(i + 1)) == Util.round(groups.get(i)) + Util.round(groups.get(i + 1))) {
                 groups.set(i, groups.get(i) + groups.get(i + 1));
                 groups.remove(i + 1);
                 return; //Divider removed, so don't execute next loop

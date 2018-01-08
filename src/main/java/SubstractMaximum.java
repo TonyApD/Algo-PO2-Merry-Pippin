@@ -13,6 +13,6 @@ public class SubstractMaximum {
             sum += scan.nextInt();
         }
 
-        System.out.print(Util.r(sum - (nrOfDividers + 1) * 4));
+        System.out.print(Util.round(sum - (nrOfDividers + 1) * 4));
     }
 }
