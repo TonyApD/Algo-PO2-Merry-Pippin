@@ -18,7 +18,7 @@ public abstract class Util {
         return input % 10 <= 4;
     }
 
-    public static int rM(int input) {
+    public static int rem(int input) {
         return (input % 10);
     }
 }

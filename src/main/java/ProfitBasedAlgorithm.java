@@ -1,20 +1,21 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ProfitBasedAlgorithm {
 
     private static int sum;
 
     public static void main(String[] args) {
-        Reader s = new Reader();
-        ArrayList<Integer> input = new ArrayList<>();
-        int p = s.nextInt();
-        int n = s.nextInt();
+        Reader s = new Reader();                            // Start a new reader based on the optimized reader class
+        int p = s.nextInt();                                // Amount of products
+        int nDiv = s.nextInt();                             // Amount of dividers
+        ArrayList<Integer> input = new ArrayList<>();       // Fresh ArrayList to capture the products
 
         for (int i = 0; i < p; i++) {
-            input.add(s.nextInt());
+            input.add(s.nextInt());                         // Add the products to the ArrayList for use later
         }
-        s.close();
-        System.out.print(Util.r(optimizeDividers(optimizePrices(input), n)));
+        s.close();                                                               // Close the reader when done
+        System.out.print(Util.r(optimizeDividers(optimizePrices(input), nDiv))); // Execute the optimizeDividers function and return the result
     }
 
     /**
@@ -24,35 +25,34 @@ public class ProfitBasedAlgorithm {
      * @return profitList with maximal amount that could be subtracted for that given input
      */
     private static ArrayList<Integer> optimizePrices(ArrayList<Integer> input) {
-        int p = 0; // p for profit, we use this to keep track of the profit at a given input
-        sum = 0;
-        ArrayList<Integer> profitL = new ArrayList<>();
-
-        for (Integer i : input) {
-            sum += i;
-            p = p + Util.rM(i);
-            if (!profitL.isEmpty() && Util.rM(p) + profitL.get(profitL.size() - 1) <= 4) {
-                profitL.set(profitL.size() - 1, Util.rM(p) + profitL.get(profitL.size() - 1));
-                p = 0;
-            } else if (Util.giveP(p)) {
-                profitL.add(Util.rM(p));
-                p = 0;
+        int potP = 0;                                       // potP = potential Profit ([1..4] numbers) at a given input
+        sum = 0;                                            // Reset the profit at the beginning of each run
+        ArrayList<Integer> profitL = new ArrayList<>();     // Fresh arraylist to keep track of the potential profit [1..4].
+        for (Integer i : input) {                           // Start walking through the input
+            sum += i;                                       // Add the input to the sum
+            potP = potP + Util.rem(i);                      // For every value we check what the remainder would be
+            if (!profitL.isEmpty() && Util.rem(potP) + profitL.get(profitL.size() - 1) <= 4) {
+                profitL.set(profitL.size() - 1, Util.rem(potP) + profitL.get(profitL.size() - 1)); // add the remainder to the list, see documentation for further explaining on this
+                potP = 0;                                   // If we did add potential Profit to the list, reset it for the next iteration.
+            } else if (Util.giveP(potP)) {                  // Otherwise, if there is a profit
+                profitL.add(Util.rem(potP));                // We add the profit to the list.
+                potP = 0;                                   // And reset the profit again.
             }
         }
 
-        ArrayList<Integer> optimizedProfitL = new ArrayList<>();
-        for (int i = 0; i < profitL.size(); i++) {
-            if (i < profitL.size() - 1) {
-                if (i != 0 && profitL.get(i) == 4 && profitL.get(i + 1) == 4) {
-                    optimizedProfitL.add(0, profitL.get(i));
-                } else {
-                    optimizedProfitL.add(profitL.get(i));
+        ArrayList<Integer> optimizedProfitL = new ArrayList<>();    // Fresh new list to optimized (IE place the brackets)
+        for (int i = 0; i < profitL.size(); i++) {                  // We walk to the potential profit list
+            if (i < profitL.size() - 1) {                           // As long as we did not hit the end of the list
+                if (i != 0 && profitL.get(i) == 4 && profitL.get(i + 1) == 4) { // If the current val is 4, we check if the nest value is 4 as well
+                    optimizedProfitL.add(0, profitL.get(i));    // If this is the case, we add it to the front of the list.
+                } else {                                               // Else we add it in order to the list
+                    optimizedProfitL.add(profitL.get(i));              // We add it to the list
                 }
             } else {
-                optimizedProfitL.add(profitL.get(i));
+                optimizedProfitL.add(profitL.get(i));                  // Same at this point, we add the value anyway
             }
         }
-        return optimizedProfitL;
+        return optimizedProfitL;                                       // Return the resulting list
     }
 
 
@@ -61,19 +61,19 @@ public class ProfitBasedAlgorithm {
      * Right now the list is sorted from high to low, then we subtract those top values as long as we have dividers
      *
      * @param optimizedProfitL list of possible subtractions based on the optimizePrices function
-     * @param nrOfDividers       needed to calculate the max sum to be subtracted.
+     * @param nrOfDividers     needed to calculate the max sum to be subtracted.
      * @return the return value consists of the optimized price that will get payed after 'placing' the dividers
      */
     private static int optimizeDividers(ArrayList<Integer> optimizedProfitL, int nrOfDividers) {
-        for (Integer i : optimizedProfitL) {
-            if (nrOfDividers != 0) {
-                sum -= i;
-                nrOfDividers--;
-            } else {
-                break;
+        for (Integer i : optimizedProfitL) {        // We walk through the list of profits we have
+            if (nrOfDividers != 0) {                // As long as we have dividers
+                sum -= i;                           // We subtract the profit from the sum
+                nrOfDividers--;                     // Decrease the amount of dividers we have
+            } else {                                // If we don't have any more dividers
+                break;                              // Break the loop
             }
         }
-        return sum;
+        return sum;                                 // Return the value after done.
     }
 
 }
