@@ -18,10 +18,11 @@ public class ProfitBasedAlgorithm {
     }
 
     /**
-     * Takes the main input with products and optimizes it into a possible profits which get stored into the profitList
-     *
+     * Takes the main input with products and optimizes it into a possible profits which get stored into
+     * the potentialProfitList. This list has values like [4,4,2,2,3,4,3,2,1,2,1,4,2,1,2,4,3] and
+     * is therefore not optimised yet
      * @param input main input for current list of products
-     * @return profitList with maximal amount that could be subtracted for that given input
+     * @return potentialProfitList
      */
     private static ArrayList<Integer> calculatePotentialProfit(ArrayList<Integer> input) {
         sum = 0;                                                     // Reset the profit at the beginning of each run
@@ -43,41 +44,46 @@ public class ProfitBasedAlgorithm {
         return potentialProfitList;
     }
 
+    /**
+     * Takes the potentialProfitList and transforms that before placing dividers
+     * The list will now look more like [4,4,4,4,2,2,3,3,2,1,2,1,4,2,1,2,3] and
+     * @param profitL main input for current list of products
+     * @return potentialProfitList
+     */
     private static ArrayList<Integer> calculateProfit(ArrayList<Integer> profitL) {
-        ArrayList<Integer> optimizedProfitL = new ArrayList<>();    // Fresh new list to optimized (IE place the brackets)
-        for (int i = 0; i < profitL.size(); i++) {                  // We walk to the potential profit list
-            if (i < profitL.size() - 1) {                           // As long as we did not hit the end of the list
+        ArrayList<Integer> optimizedProfitList = new ArrayList<>();  // Fresh new list to optimized (IE place the brackets)
+        for (int i = 0; i < profitL.size(); i++) {                   // We walk to the potential profit list
+            if (i < profitL.size() - 1) {                            // As long as we did not hit the end of the list
                 if (i != 0 && profitL.get(i) == 4 && profitL.get(i + 1) == 4) { // If the current val is 4, we check if the nest value is 4 as well
-                    optimizedProfitL.add(0, profitL.get(i)); // If this is the case, we add it to the front of the list.
-                } else {                                            // Else we add it in order to the list
-                    optimizedProfitL.add(profitL.get(i));           // We add it to the list
+                    optimizedProfitList.add(0, profitL.get(i)); // If this is the case, we add it to the front of the list.
+                } else {                                             // Else we add it in order to the list
+                    optimizedProfitList.add(profitL.get(i));         // We add it to the list
                 }
             } else {
-                optimizedProfitL.add(profitL.get(i));               // Same at this point, we add the value anyway
+                optimizedProfitList.add(profitL.get(i));             // Same at this point, we add the value anyway
             }
         }
-        return optimizedProfitL;                                    // Return the resulting list
+        return optimizedProfitList;                                  // Return the resulting list
     }
 
 
     /**
-     * Given that the profitlist is build up, we now look at placing dividers.
-     * Right now the list is sorted from high to low, then we subtract those top values as long as we have dividers
-     *
-     * @param optimizedProfitL list of possible subtractions based on the optimizePrices function
-     * @param nrOfDividers     needed to calculate the max sum to be subtracted.
-     * @return the return value consists of the optimized price that will get payed after 'placing' the dividers
+     * Now are finally at the removing step. At this point we subtract profit (IE place dividers) as long as we have
+     * them. When we are out of dividers, we stop the loop and return.
+     * @param optimizedProfitList this is the optimized list that we will use to subtract from the sum
+     * @param nrOfDividers number of dividers we have at our disposal
+     * @return returns the resulting sum so the main can print it.
      */
-    private static int optimizeDividers(ArrayList<Integer> optimizedProfitL, int nrOfDividers) {
-        for (Integer i : optimizedProfitL) {                        // We walk through the list of profits we have
-            if (nrOfDividers != 0) {                                // As long as we have dividers
-                sum -= i;                                           // We subtract the profit from the sum
-                nrOfDividers--;                                     // Decrease the amount of dividers we have
-            } else {                                                // If we don't have any more dividers
-                break;                                              // Break the loop
+    private static int optimizeDividers(ArrayList<Integer> optimizedProfitList, int nrOfDividers) {
+        for (Integer i : optimizedProfitList) {                      // We walk through the list of profits we have
+            if (nrOfDividers != 0) {                                 // As long as we have dividers
+                sum -= i;                                            // We subtract the profit from the sum
+                nrOfDividers--;                                      // Decrease the amount of dividers we have
+            } else {                                                 // If we don't have any more dividers
+                break;                                               // Break the loop
             }
         }
-        return sum;                                                 // Return the value after done.
+        return sum;                                                  // Return the value after done.
     }
 
 }
