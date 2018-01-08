@@ -63,7 +63,7 @@ public class ProfitBasedAlgorithm {
                 optimizedProfitList.add(profitL.get(i));             // Same at this point, we add the value anyway
             }
         }
-        return optimizedProfitList;                                  // Return the resulting list
+        return optimizedProfitList;
     }
 
 
