@@ -3,3 +3,10 @@ target/
 .DS_Store
 *.iml
 *.class
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.gz
+*.toc
