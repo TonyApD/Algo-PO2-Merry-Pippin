@@ -1,18 +1,16 @@
-import java.util.Scanner;
-
 public class SubstractMaximum {
 
-    public static void main(String[] args){
-        Scanner scan = new Scanner(System.in);
+    public static void main(String[] args) {
+        Reader s = new Reader();
         int sum = 0;
 
-        int nrOfProducts = scan.nextInt();
-        int nrOfDividers = scan.nextInt();
+        int nrOfProducts = s.nextInt();
+        int nrOfDividers = s.nextInt();
 
         for (int i = 0; i < nrOfProducts; i++) {
-            sum += scan.nextInt();
+            sum += s.nextInt();
         }
 
-        System.out.print(Util.round(sum - (nrOfDividers + 1) * 4));
+        System.out.print(Util.round(Math.max(0, sum - (nrOfDividers + 1) * 4)));
     }
 }
