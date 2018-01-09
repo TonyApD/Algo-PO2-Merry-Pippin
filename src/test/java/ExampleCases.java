@@ -192,6 +192,18 @@ public class ExampleCases {
     }
 
     @Test
+    public void testExample29() {
+        executeAlgorithm("15 3\n" +
+                "4 2 5 9 6 7 5 9 4 1 7 2 9 5 1", 60);
+    }
+
+    @Test
+    public void testExample30() {
+        executeAlgorithm("15 7\n" +
+                "4 2 5 9 6 7 5 9 4 1 7 2 9 5 1", 50);
+    }
+
+    @Test
     public void testExamplea4() {
         executeAlgorithm("4 2\n" +
                 "25 16 21 24", 80);
