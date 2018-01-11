@@ -94,7 +94,7 @@ In this chapter we will describe the complexity of our algorithm. We will first 
 \end{itemize}
 
 \subsubsection{Reading the input}
-The reading of the output has to process all items in the output for the algorithm. Before we read the prices of the products, we have to read the number of products and the number of dividers. This means that in total $n + 2$ items should be read from the input. The complexity of this reading is $\bigO{n}$.
+The reading of the input has to process all items in the input for the algorithm. Before we read the prices of the products, we have to read the number of products and the number of dividers. This means that in total $n + 2$ items should be read from the input. The complexity of this reading is $\bigO{n}$.
 
 The algorithm starts with reading the input. This is done in a loop which reads all the values from the input. The input starts with the number of products and dividers followed by the prizes of all products. This gives a complexity of $\bigO{n}$. The custom reader only opens and closes a connection which has a complexity of $\bigO{n}$, so the total complexity of reading the input is $\bigO{n}$.
 
@@ -103,7 +103,7 @@ The algorithm itself has 3 steps in total. The first step is to find groups with
 
 The second part of the algorithm is to optimize the list of profitable groups. In this process a loop is executed which iterates over all groups found in the previous step. In the worst case the previous step only created groups with one product. This means that this process has a complexity of $\bigO{n}$.
 
-The last step of the algorithm is substracting the first $|D|$ elements from the optimized list with profits. This process has an loop which iterates through all items of the optimizedProfitList. However, this loop is terminated when there are no dividers anymore. This means that the number of times the loop is executed is $|D|$ when $|D| \leq n$. So, the worst case is when there are more dividers than products. This results in a complexity of $\bigO{n}$ for this process.
+The last step of the algorithm is substracting the first $|D|$ elements from the optimized list with profits. This process has a loop which iterates through all items of the optimizedProfitList. However, this loop is terminated when there are no dividers anymore. This means that the number of times the loop is executed is $|D|$ when $|D| \leq n$. So, the worst case is when there are more dividers than products. This results in a complexity of $\bigO{n}$ for this process.
 
 The algorithm has three processes which are performed after each other. All of these processes have a complexity of $\bigO{n}$ which give a total complexity of $\bigO{3n}$. Since this complexity depends on n we may write it as $\bigO{n}$.
 
