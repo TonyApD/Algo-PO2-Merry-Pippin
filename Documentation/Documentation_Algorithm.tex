@@ -53,7 +53,11 @@ At first we reused our last implementation of the scanner class we did in the fi
 Since we found that is fast, it's still not recommended as it requires lot of typing. The BufferedReader class reads text from a character-input stream, buffering characters so as to provide for the efficient reading of characters, arrays, and lines. With this method we will have to parse the value every time for desired type.
 \newline
 \newline
-At this point we decided to use our own implementation of a Reader class with the use of inputDataStream. This provided us with a really fast way to read the input given by this assignment. We found it to be the fastest of all our tested reader implementations but it does require very cumbersome methods in its implementation. It uses inputDataStream to read through the stream of data and uses read() method and nextInt() methods for taking inputs. This is by far the fastest ways of taking input but is difficult to remember and is cumbersome in its approach. Our implementation can be found in the ``Reader.java'' class.
+At this point we decided to use our own implementation of a Reader class with the use of DataInputStream. This provided us with a really fast way to read the input given by this assignment. We found it to be the fastest of all our tested reader implementations but it does require very cumbersome methods in its implementation. It uses DataInputStream to read through the stream of data and uses read() method and nextInt() methods for taking inputs. This is by far the fastest ways of taking input but is difficult to remember and is cumbersome in its approach. Our implementation can be found in the ``Reader.java'' class. We used the test data we got from the algorithms website but also tested our other scanners against the website: \hyperref[http://www.spoj.com/problems/INTEST/]{``http://www.spoj.com/problems/INTEST/''} which is basically a huge place to test how fast you can read data. The ``Reader.java'' class also performed really fast on this testing framework. In the end, comparing with the default scanner implementation we saved a lot of time and made reading input literally ten times faster over the entire testset.
+\begin{itemize}
+\item \textbf{Scanner implementation:} 400ms
+\item \textbf{DataInputStream implementation:} 38ms
+\end{itemize}
 
 \subsection{Algorithm}
 The algorithm first tries to make profitable groups of the input. Products are added to the previous group when after addition the group still gives profit.
