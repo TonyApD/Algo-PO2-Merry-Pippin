@@ -36,7 +36,31 @@
 In this chapter we will explain how our algorithm works. The explentation is split into three parts.
 
 \subsection{Reading the input}
-For the reading of the input we made a custom reader which replaces the scanner in Java. The custom reader works faster than the standard scanner in Java. \textbf{Uitleg waarom sneller?}
+For the reading of the input we made a custom reader which replaces the scanner in Java. The custom reader works faster than the standard scanner in Java. \newline
+At first we reused our last implementation of the scanner class we did in the first assignment. In this instance however, we found it to perform quite slowly and it was definitely holding the speed back a lot. So after researching replacements for the scanner class we found that the BufferedReader was a way faster class to use. To give a short summary of our research we found the following information about both the Scanner and the BufferedReader:
+\newline
+\newline
+\textbf{The java.util.Scanner} class is a simple text scanner which can parse primitive types and strings. It internally uses regular expressions to read different types.
+\newline
+\newline
+\textbf{Java.io.BufferedReader} class reads text from a character-input stream, buffering characters so as to provide for the efficient reading of sequence of characters.
+\begin{itemize}
+\item BufferedReader is synchronous while Scanner is not. BufferedReader should be used if we are working with multiple threads.
+\item BufferedReader has significantly larger buffer memory than Scanner.
+\item The Scanner has a little buffer (1KB char buffer) as opposed to the BufferedReader (8KB byte buffer), but it’s more than enough.
+\item BufferedReader is a bit faster as compared to scanner because scanner does parsing of input data and BufferedReader simply reads sequence of characters.
+\end{itemize}
+Since we found that is fast, it's still not recommended as it requires lot of typing. The BufferedReader class reads text from a character-input stream, buffering characters so as to provide for the efficient reading of characters, arrays, and lines. With this method we will have to parse the value every time for desired type.
+\newline
+\newline
+At this point we decided to use our own implementation of a Reader class with the use of DataInputStream. This provided us with a really fast way to read the input given by this assignment. We found it to be the fastest of all our tested reader implementations but it does require very cumbersome methods in its implementation. It uses DataInputStream to read through the stream of data and uses read() method and nextInt() methods for taking inputs. This is by far the fastest ways of taking input but is difficult to remember and is cumbersome in its approach. Our implementation can be found in the ``Reader.java'' class. We used the test data we got from the algorithms website but also tested our other scanners against the website ``http://www.spoj.com/problems/INTEST''\footnote{\label{note1}http://www.spoj.com/problems/INTEST/} which is basically a huge place to test how fast you can read data. The ``Reader.java'' class also performed really fast on this testing framework.
+\newline
+\newline
+Since we did not want to constantly depend on testing with the ads.cs.ru.nl framework we copied the tests to a local machine. We've used JUnit\footnote{\label{note1}http://junit.org/junit4/} to make unittests and used those to test, debug and validate our code. The implementation (not necessary) can be seen in ``ExampleCases.java''. Those 45 testcases include those of the testframework in ads.cs.ru.nl and we saw a very significant improvement on the runtime after implementing the new Reader class. In the end, comparing with the default scanner implementation we saved a lot of time and made reading input literally ten times faster over the entire testset.
+\begin{itemize}
+\item \textbf{Scanner implementation:} 400ms
+\item \textbf{DataInputStream implementation:} 38ms
+\end{itemize}
 
 \subsection{Algorithm}
 The algorithm first tries to make profitable groups of the input. Products are added to the previous group when after addition the group still gives profit.
