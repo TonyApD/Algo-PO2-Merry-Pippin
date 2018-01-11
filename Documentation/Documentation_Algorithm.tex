@@ -85,10 +85,12 @@ All the characters of the input are read and processed in the correct way. The n
 
 \subsubsection{Algorithm}
 The algorithm first starts by creating profitable groups. The goal of the algorithm is to get as much possible profit from the rounding on the groups. By searching as much profitable groups we may find a combination of groups which give a high profit. This number of groups that this group finds does not depend on the number of dividers. This is done in a later step.
-
+\newline
+\newline
 The second step is to convert the list with profits from a group to an optimized list with profits. This process places higher profits in front of the list. Since the order of products is predefined in the input, we only place the value in front if it's followed by an equal or higher profit. This results in a list where the highest possible profits are in front of the list, followed by the value of the next group if this was lower. This order is necessary for the next step.
-
-The last step is to remove the first $|D|$ profits from the total sum of prizes. This are the profits that we may achieve with the dividers
+\newline
+\newline
+The last step is to remove the first $|D|$ profits from the total sum of prizes. This is the highest possible profit that we may achieve the number of dividers that are possible to place between the products. After these profits are substracted from the list, the rounding will perform the rounding for the last group since this may also be a group that is not profitable.
 
 \subsubsection{Writing output}
 Before the output is printed, the value is rounded. This is done, since all the groups between all dividers should be rounded which means the sum of the groups should also be a rounded value.
