@@ -14,7 +14,7 @@ public class ProfitBasedAlgorithm {
             input.add(s.nextInt());                                  // Add the price of every product to the ArrayList
         }
         s.close();                                                   // Close the reader when done
-        System.out.print(Util.round(optimizeDividers(calculateProfit(calculatePotentialProfit(input)), nDiv))); // execute and print result
+        System.out.print(Util.round(substractProfits(calculateOptimizedProfit(calculatePotentialProfit(input)), nDiv))); // execute and print result
     }
 
     /**
@@ -51,7 +51,7 @@ public class ProfitBasedAlgorithm {
      * @param profitL main input for current list of products
      * @return potentialProfitList
      */
-    private static ArrayList<Integer> calculateProfit(ArrayList<Integer> profitL) {
+    private static ArrayList<Integer> calculateOptimizedProfit(ArrayList<Integer> profitL) {
         ArrayList<Integer> optimizedProfitList = new ArrayList<>();  // Fresh new list to optimized (IE place the brackets)
         for (int i = 0; i < profitL.size(); i++) {                   // We walk to the potential profit list
             if (i < profitL.size() - 1) {                            // As long as we did not hit the end of the list
@@ -76,7 +76,7 @@ public class ProfitBasedAlgorithm {
      * @param nrOfDividers        number of dividers we have at our disposal
      * @return returns the resulting sum so the main can print it.
      */
-    private static int optimizeDividers(ArrayList<Integer> optimizedProfitList, int nrOfDividers) {
+    private static int substractProfits(ArrayList<Integer> optimizedProfitList, int nrOfDividers) {
         for (Integer i : optimizedProfitList) {                      // We walk through the list of profits we have
             if (nrOfDividers != 0) {                                 // As long as we have dividers
                 sum -= i;                                            // We subtract the profit from the sum
