@@ -23,12 +23,6 @@ public class ExampleCases {
     }
 
     @Test
-    public void testExamplea0() {
-        executeAlgorithm("14 6\n" +
-                "3 8 4 7 2 5 1 8 5 2 7 1 6 1", 0);
-    }
-
-    @Test
     public void testExamplea1() {
         executeAlgorithm("8 1\n" +
                 "1 1 1 1 1 1 1 1", 0);
