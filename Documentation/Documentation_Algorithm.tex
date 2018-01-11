@@ -93,8 +93,9 @@ The second step is to convert the list with profits from a group to an optimized
 The last step is to remove the first $|D|$ profits from the total sum of prizes. This is the highest possible profit that we may achieve the number of dividers that are possible to place between the products. After these profits are substracted from the list, the rounding will perform the rounding for the last group since this may also be a group that is not profitable.
 
 \subsubsection{Writing output}
-Before the output is printed, the value is rounded. This is done, since all the groups between all dividers should be rounded which means the sum of the groups should also be a rounded value.
+Before the output is printed, the value is rounded. This is done, since all the groups between all dividers should be rounded which means the sum of the groups should also be a rounded value. The rounding is done by a util class where we stored all the util functions we need. This can be seen in ``Util.java''.
 
+\newpage
 \subsection{Complexity}
 In this chapter we will describe the complexity of our algorithm. We will first describe the complexity in detail for the smaller parts and after this compute the complexity for the whole algorithm. The parts which depend on the number of dividers are indicated by $|D|$.
 
