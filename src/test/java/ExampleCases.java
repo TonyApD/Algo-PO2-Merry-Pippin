@@ -210,6 +210,18 @@ public class ExampleCases {
     }
 
     @Test
+    public void testExample31() {
+        executeAlgorithm("14 2\n" +
+                "3 8 4 7 2 5 1 8 5 2 7 1 6 1", 50);
+    }
+
+    @Test
+    public void testExample32() {
+        executeAlgorithm("14 6\n" +
+                "3 8 4 7 2 5 1 8 5 2 7 1 6 1", 40);
+    }
+
+    @Test
     public void testExamplea4() {
         executeAlgorithm("4 2\n" +
                 "25 16 21 24", 80);
