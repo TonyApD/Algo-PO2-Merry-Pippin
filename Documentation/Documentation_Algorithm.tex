@@ -69,7 +69,7 @@ The algorithm first tries to make profitable groups of the input. Products are a
 After doing so, the next step includes analyzing which groups are the most profitable to based on the list we made earlier. The algorithm optimizes the list with profits by putting groups with a higher profit in front of the list.
 \newline
 \newline
-Finally the first D profits are substracted from the total sum of products where D is the number of dividers. If we run out of dividers to place before we are doing with going through the products we terminate early and return the total optimized sum.
+Finally the first $|D|$ profits are substracted from the total sum of products where D is the number of dividers. If we run out of dividers to place before we are doing with going through the products we terminate early and return the total optimized sum.
 
 \subsection{Writing output}
 
@@ -83,6 +83,11 @@ In this section we will discuss the Correctness of the processes.
 All the characters of the input are read and processed in the correct way. The number of products is used to define through how much prizes the reader should iterate. The number of dividers is stored to be used later in the algorithm. The prizes are stored in a list which is used in the algorithm. All of this stored data is used later in the algorithm which makes storing the values a logic choice.
 
 \subsubsection{Algorithm}
+The algorithm first starts by creating profitable groups. The goal of the algorithm is to get as much possible profit from the rounding on the groups. By searching as much profitable groups we may find a combination of groups which give a high profit. This number of groups that this group finds does not depend on the number of dividers. This is done in a later step.
+
+The second step is to convert the list with profits from a group to an optimized list with profits. This process places higher profits in front of the list. Since the order of products is predefined in the input, we only place the value in front if it's followed by an equal or higher profit. This results in a list where the highest possible profits are in front of the list, followed by the value of the next group if this was lower. This order is necessary for the next step.
+
+The last step is to remove the first $|D|$ profits from the total sum of prizes. This are the profits that we may achieve with the dividers
 
 \subsubsection{Writing output}
 Before the output is printed, the value is rounded. This is done, since all the groups between all dividers should be rounded which means the sum of the groups should also be a rounded value.
