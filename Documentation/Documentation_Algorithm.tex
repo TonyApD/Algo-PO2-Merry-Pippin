@@ -72,6 +72,7 @@ After doing so, the next step includes analyzing which groups are the most profi
 Finally the first $|D|$ profits are substracted from the total sum of products where D is the number of dividers. If we run out of dividers to place before we are doing with going through the products we terminate early and return the total optimized sum.
 
 \subsection{Writing output}
+This is simply the result of our algorithm. We have a ``private static int sum'' in our implementation which we constantly update with new prices and eventually as a last step will be returned when the algorithm is done.
 
 \newpage
 \section{Analysis}
@@ -104,16 +105,20 @@ In this chapter we will describe the complexity of our algorithm. We will first 
 
 \subsubsection{Reading the input}
 The reading of the input has to process all items in the input for the algorithm. Before we read the prices of the products, we have to read the number of products and the number of dividers. This means that in total $n + 2$ items should be read from the input. The complexity of this reading is $\bigO{n}$.
-
+\newline
+\newline
 The algorithm starts with reading the input. This is done in a loop which reads all the values from the input. The input starts with the number of products and dividers followed by the prizes of all products. This gives a complexity of $\bigO{n}$. The custom reader only opens and closes a connection which has a complexity of $\bigO{n}$, so the total complexity of reading the input is $\bigO{n}$.
 
 \subsubsection{Algorithm}
 The algorithm itself has 3 steps in total. The first step is to find groups with potential profit. Therefore, there is looped once over all items of the input. In the loop there is an if else which adds a group to the potentialProfitList or not. The complexity of this whole process depends on the number of executions in the loop. This gives a complexity of $\bigO{n}$.
-
+\newline
+\newline
 The second part of the algorithm is to optimize the list of profitable groups. In this process a loop is executed which iterates over all groups found in the previous step. In the worst case the previous step only created groups with one product. This means that this process has a complexity of $\bigO{n}$.
-
+\newline
+\newline
 The last step of the algorithm is substracting the first $|D|$ elements from the optimized list with profits. This process has a loop which iterates through all items of the optimizedProfitList. However, this loop is terminated when there are no dividers anymore. This means that the number of times the loop is executed is $|D|$ when $|D| \leq n$. So, the worst case is when there are more dividers than products. This results in a complexity of $\bigO{n}$ for this process.
-
+\newline
+\newline
 The algorithm has three processes which are performed after each other. All of these processes have a complexity of $\bigO{n}$ which give a total complexity of $\bigO{3n}$. Since this complexity depends on n we may write it as $\bigO{n}$.
 
 \subsubsection{Writing output}
