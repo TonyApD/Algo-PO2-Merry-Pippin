@@ -10,3 +10,4 @@ target/
 *.out
 *.gz
 *.toc
+Documentation/Documentation_Algorithm.pdf

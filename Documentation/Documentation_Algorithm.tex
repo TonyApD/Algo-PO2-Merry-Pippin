@@ -39,7 +39,11 @@ In this chapter we will explain how our algorithm works. The explentation is spl
 For the reading of the input we made a custom reader which replaces the scanner in Java. The custom reader works faster than the standard scanner in Java. \textbf{Uitleg waarom sneller?}
 
 \subsection{Algorithm}
+The algorithm first tries to make profitable groups of the input. Products are added to the previous group when after addition the group still gives profit.
 
+After this the algorithm optimizes the list with profits by putting groups with a higher profit in front of the list.
+
+Finally the first D profits are substracted from the total sum of products where D is the number of dividers.
 
 \subsection{Computing output}
 
