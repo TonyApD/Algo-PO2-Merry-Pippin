@@ -55,7 +55,7 @@ public class ProfitBasedAlgorithm {
         ArrayList<Integer> optimizedProfitList = new ArrayList<>();  // Fresh new list to optimized (IE place the brackets)
         for (int i = 0; i < profitL.size(); i++) {                   // We walk to the potential profit list
             if (i < profitL.size() - 1) {                            // As long as we did not hit the end of the list
-                if (i != 0 && profitL.get(i) == 4 && profitL.get(i + 1) == 4 ) { // If the current val is 4, we check if the nest value is 4 as well
+                if (i != 0 && profitL.get(i) == 4 && profitL.get(i + 1) == 4) { // If the current val is 4, we check if the nest value is 4 as well
                     optimizedProfitList.add(0, profitL.get(i)); // If this is the case, we add it to the front of the list.
                 } else {                                             // Else we add it in order to the list
                     optimizedProfitList.add(profitL.get(i));         // We add it to the list
