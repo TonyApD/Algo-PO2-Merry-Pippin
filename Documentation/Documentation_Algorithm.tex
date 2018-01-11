@@ -33,10 +33,10 @@
 
 \newpage
 \section{Explanation}
-
+In this chapter we will explain how our algorithm works. The explentation is split into three parts.
 
 \subsection{Reading the input}
-
+For the reading of the input we made a custom reader which replaces the scanner in Java. The custom reader works faster than the standard scanner in Java. \textbf{Uitleg waarom sneller?}
 
 \subsection{Algorithm}
 
@@ -56,12 +56,15 @@ In this section we will discuss the Correctness of the processes.
 \subsubsection{Computing output}
 
 \subsection{Complexity}
+In this chapter we will describe the complexity of our algorithm. We will first describe the complexity in detail for the smaller parts and after this compute the complexity for the whole algorithm.
 
 \subsubsection{Reading the input}
+The reading of the output has to process all items in the output for the algorithm. Before we read the prices of the products, we have to read the number of products and the number of dividers. This means that in total $n + 2$ items should be read from the input. The complexity of this reading is $\bigO{n}$.
 
 \subsubsection{Algorithm}
 
-\subsubsection{Computing output}
+\subsubsection{Writing output}
+The output gets the total sum of products with the possible profit already substracted. The output should only be rounded, since the substraction may cause values that does not end with 0. The complexity of this process is $\bigO{1}$.
 
 \newpage
 \section{Reference}
