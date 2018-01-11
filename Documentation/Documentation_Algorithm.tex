@@ -63,11 +63,13 @@ Since we did not want to constantly depend on testing with the ads.cs.ru.nl fram
 \end{itemize}
 
 \subsection{Algorithm}
-The algorithm first tries to make profitable groups of the input. Products are added to the previous group when after addition the group still gives profit.
-
-After this the algorithm optimizes the list with profits by putting groups with a higher profit in front of the list.
-
-Finally the first D profits are substracted from the total sum of products where D is the number of dividers.
+The algorithm first tries to make profitable groups of the input. Products are added to the previous group when after addition the group still gives profit. Profitable groups would consist of numbers [1..4]. So for instance we might find the number 14 first after which we add 4 to a list to keep track of potential profit. However say we would encounter a list [1,1,1,1], the algorithm would then keep on counting 1's until we get to 4 and then add four the the potential profit group.
+\newline
+\newline
+After doing so, the next step includes analyzing which groups are the most profitable to based on the list we made earlier. The algorithm optimizes the list with profits by putting groups with a higher profit in front of the list.
+\newline
+\newline
+Finally the first D profits are substracted from the total sum of products where D is the number of dividers. If we run out of dividers to place before we are doing with going through the products we terminate early and return the total optimized sum.
 
 \subsection{Computing output}
 
